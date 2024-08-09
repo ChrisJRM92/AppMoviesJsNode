@@ -4,7 +4,7 @@ const catchError = require("../utils/catchError");
 
 
 const getAll = catchError(async(req, res) => {
-  const result = await Actor.findAll({include: [Movie]}) //select * from user
+  const result = await Actor.findAll() //select * from user
   return res.json(result)
 });
 
@@ -39,19 +39,10 @@ const update = catchError(async(req, res) =>{
   return res.status(200).json(car[1][0])
 })
 
-const setMovie = catchError(async(req,res)=>{
-  const {id} = req.params;
-  const actor = await Actor.findByPk(id);
-  await actor.setMovie(req.body);
-  const movie = await actor.getMovie();
-  return res.json(movie);
-});
-
 module.exports = {
     getAll,
     create,
     getOne,
     destroy,
     update,
-    setMovie
 }

@@ -1,9 +1,9 @@
-const { Actor } = require("../models");
+const { Actor, Genre, Director } = require("../models");
 const Movie = require("../models/movies");
 const catchError = require("../utils/catchError");
 
 const getAll = catchError(async(req, res) => {
-  const result = await Movie.findAll({include: [Actor]}) //select * from user     ----     include
+  const result = await Movie.findAll({include: [Genre, Actor, Director]}) //select * from user     ----     include
   return res.json(result)
 });
 
@@ -39,10 +39,37 @@ const update = catchError(async(req, res) =>{
   return res.status(200).json(car[1][0])
 })
 
+const setGenres = catchError(async(req, res) => {
+  const {id} = req.params;
+  const movie = await Movie.findByPk(id)
+  await movie.setGenres(req.body)
+  const genres = await movie.getGenres()
+  return res.json(genres)
+});
+
+const setActors = catchError(async(req, res) => {
+  const {id} = req.params;
+  const movie = await Movie.findByPk(id)
+  await movie.setActors(req.body)
+  const actors = await movie.getActors()
+  return res.json(actors)
+});
+
+const setDirectors = catchError(async(req, res) => {
+  const {id} = req.params;
+  const movie = await Movie.findByPk(id)
+  await movie.setDirectors(req.body)
+  const directors = await movie.getDirectors()
+  return res.json(directors)
+});
+
 module.exports = {
     getAll,
     create,
     getOne,
     destroy,
-    update
+    update,
+    setGenres,
+    setActors,
+    setDirectors
 }
