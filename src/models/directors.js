@@ -13,7 +13,6 @@ const Director = sequelize.define('directors', {
   nationality: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true
   },
   image: {
     type: DataTypes.TEXT,

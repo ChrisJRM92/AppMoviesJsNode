@@ -13,7 +13,6 @@ const Actor = sequelize.define('actors', {
   nationality: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true
   },
   image: {
     type: DataTypes.TEXT,

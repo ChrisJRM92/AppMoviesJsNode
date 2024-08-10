@@ -10,9 +10,7 @@ const app = express();
 
 // Middlewares 
 app.use(express.json());
-app.use(helmet({
-    crossOriginResourcePolicy: false,
-}));
+app.use(helmet({crossOriginResourcePolicy: false}));
 app.use(cors());
 
 app.use('/api/v1', router);
