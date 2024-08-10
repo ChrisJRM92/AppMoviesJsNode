@@ -7,7 +7,6 @@ const router = express.Router();
 
 
 router.use('/movies', moviesRouter);
-
 router.use('/actors', actorRouter);
 router.use('/directors', directorRouter);
 router.use('/genres', genresRouter);
