@@ -4,13 +4,13 @@ const catchError = require("../utils/catchError");
 
 const getAll = catchError(async(req, res) => {
   const result = await Movie.findAll({include: [Genre, Actor, Director]}) //select * from user     ----     include
-  return res.json(result)
+  return res.status(200).json(result)
 });
 
 const create = catchError(async(req, res) =>{
   const result = await Movie.create(req.body)
   // consolelog(req.body)
-  return res.status(200).json(result)
+  return res.status(201).json(result)
 })
 
 

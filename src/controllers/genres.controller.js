@@ -3,13 +3,13 @@ const catchError = require("../utils/catchError");
 
 const getAll = catchError(async(req, res) => {
   const result = await Genre.findAll() //select * from user
-  return res.json(result)
+  return res.status(200).json(result)
 });
 
 const create = catchError(async(req, res) =>{
   const result = await Genre.create(req.body)
   // consolelog(req.body)
-  return res.status(200).json(result)
+  return res.status(201).json(result)
 })
 
 
